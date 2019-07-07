@@ -1,3 +1,4 @@
+require 'menu'
 
 class Order
 
@@ -13,4 +14,9 @@ def add(dish, quantity)
 end
 
 
+def total
+  @dishes.map do |dish, quantity|
+    menu.price[dish] * quantity
+  end.inject(:+)
+end
 end

@@ -1,11 +1,11 @@
 
 class Menu
   DEFAULT_MENU = {
-    "chicken" => 1,
-    "chips" => 2,
-    "salad" => 3
+    chicken: 1,
+    chips: 2,
+    salad: 3
   }
-  attr_reader :dishes
+  attr_reader :dishes, :price
 
   def initialize(dishes = DEFAULT_MENU)
     @dishes = dishes
@@ -15,6 +15,10 @@ class Menu
     dishes.map do |name, price|
       "%s £%.2f" % [name.to_s.capitalize, price]
     end.join("\n")
+  end
+
+  def price(dish)
+    dishes[dish]
   end
 # s = "hello, %s. Where is %s?" % ("John","Mary")
 # % string interpelation for replacing #{}
