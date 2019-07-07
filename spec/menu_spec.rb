@@ -2,20 +2,22 @@ require 'menu'
 
 describe Menu do
 
-subject(:menu) { described_class.new(dishes) }
-let(:dishes) do
-   {
-    salad: 4.50,
-    soup: 2.00
-  }
-end
+  let(:takeaway) { double :takeaway, printed_menu => Menu::DEFAULT_MENU }
+  let(:menu) {double :menu, items: {
+      "chicken" => 1,
+      "chips" => 2,
+      "salad" => 3
+    } }
 
-  it "shows a list of meals and prices" do
-    expect(menu.dishes).to eq(dishes)
-  end
+
+  # it "shows a list of meals and prices" do
+  #   subject.takeaway
+  #   expect(takeaway.print_menu).to eq Menu::DEFAULT_MENU
+  # end
 
   it "prints a list of dishes with prices" do
-    printed_menu = "Salad £4.50, Soup £2.00"
-    expect(menu.reading_menu).to eq(printed_menu)
+    Menu::DEFAULT_MENU.each
+
+    expect(subject.reading_menu).to eq("Chicken £1.00\nChips £2.00\nSalad £3.00")
   end
 end
