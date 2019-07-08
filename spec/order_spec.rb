@@ -8,7 +8,8 @@ require 'order'
 describe Order do
   subject(:order) { described_class.new(menu) }
 
-  let(:menu) { double(:menu) }
+  let(:menu) { double :menu, :price => 1 }
+
   let(:dish) { double(:dish) }
   let(:quantity) { double(:quantity)}
 
@@ -33,10 +34,10 @@ describe Order do
 
 describe '#total' do
   it "checks is the total amount is correct" do
+    allow(menu).to receive(:price).with(dishes)
     order.add(:chicken, 2)
-    order.add(:chips, 3)
-    total = 8
-    # expect(order.total).to eq(total)
+    total = 2
+    expect(order.total).to eq(total)
   end
 end
 

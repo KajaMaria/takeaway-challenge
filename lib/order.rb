@@ -16,7 +16,7 @@ end
 
 def total
   @dishes.map do |dish, quantity|
-    menu.price[dish] * quantity
+    menu.price(dish) * quantity
   end.inject(:+)
 end
 end
